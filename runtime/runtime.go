@@ -1723,6 +1723,10 @@ func NewBlockValue(block Block) BlockValue {
 
 func (BlockValue) IsValue() {}
 
+func (v BlockValue) Accept(interpreter *interpreter.Interpreter, visitor interpreter.Visitor) {
+	visitor.VisitValue(interpreter, v)
+}
+
 func (BlockValue) DynamicType(*interpreter.Interpreter) interpreter.DynamicType {
 	return nil
 }
